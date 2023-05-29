@@ -31,7 +31,7 @@ public class TestBase {
     public static void initialization() {
         String browserName = prop.getProperty("browser");
         if (browserName.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", "H:\\Firehouse\\Mortar\\MortarNew\\NewMortar\\WebDriver\\chromedriver_win113\\chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "H:\\Firehouse\\Mortar\\MortarNew\\MortarPOM\\WebDriver\\chromedriver_win113\\chromedriver.exe");
             driver = new ChromeDriver();
         }
         // Maximise the Browser

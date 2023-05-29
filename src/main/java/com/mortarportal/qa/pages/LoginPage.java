@@ -13,7 +13,7 @@ public class LoginPage extends TestBase {
     @FindBy(id = "password")
     WebElement password;
 
-    @FindBy(xpath = "//input[@type='submit']")
+    @FindBy(xpath = "//button[@type='submit']")
     WebElement loginBtn;
 
     @FindBy(xpath = "//button[contains(text(),'Signup')]")

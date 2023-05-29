@@ -1,4 +1,4 @@
-package com.mortarportal.qa.util;
+package com.mortarportal.qa.pages;
 
 public class TestUtil {
 
