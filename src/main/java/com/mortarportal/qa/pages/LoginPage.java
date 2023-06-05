@@ -16,8 +16,8 @@ public class LoginPage extends TestBase {
     @FindBy(xpath = "//button[@type='submit']")
     WebElement loginBtn;
 
-    @FindBy(xpath = "//button[contains(text(),'Signup')]")
-    WebElement signUpBtn;
+    @FindBy(xpath = "//h3[contains(text(),'Sign In')]")
+    WebElement signUpText;
 
     @FindBy(xpath = "//img[contains(@class,'ui header ellipsis')]")
     WebElement mortarLogo;
