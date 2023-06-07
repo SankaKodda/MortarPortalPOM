@@ -1,7 +1,7 @@
 package com.mortarportal.qa.testcases;
 
 import com.mortarportal.qa.base.TestBase;
-import com.mortarportal.qa.pages.ClientDashboardPage;
+import com.mortarportal.qa.pages.ClientDashboard;
 import com.mortarportal.qa.pages.Dashboard;
 import com.mortarportal.qa.pages.LoginPage;
 
@@ -13,12 +13,14 @@ import org.testng.annotations.Test;
 
 public class DashboardPageTest extends TestBase {
     LoginPage loginPage;
-    Dashboard dashboard;
+    Dashboard dashboard,dashboard1;
     TestUtil testUtil;
-    ClientDashboardPage clientDashboardPage;
+    ClientDashboard clientDashboard;
+
     public DashboardPageTest() {
         super();
     }
+
     //  Test Case should be Separated -- independent with each other
     //  before each test case -- launch the browser and login
     //  @test -- execute test cases
@@ -27,10 +29,10 @@ public class DashboardPageTest extends TestBase {
     public void setUp() {
         initialization();
         testUtil = new TestUtil();
-        clientDashboardPage = new ClientDashboardPage();
+        clientDashboard = new ClientDashboard();
         loginPage = new LoginPage();
         dashboard = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
-
+//        clientDashboard = dashboard.clickOnGoToClientDashboard();
     }
 
     @Test(priority = 1)
@@ -44,10 +46,24 @@ public class DashboardPageTest extends TestBase {
 //        testUtil.switchToFrame();
         Assert.assertTrue(dashboard.verifyDashboardText());
     }
+
     @Test(priority = 3)
-    public void verifyClickGoToClientDashboardTest(){
+    public void verifySearchABrandTest() {
 //        testUtil.switchToFrame();
-        clientDashboardPage = dashboard.clickOnGoToClientDashboard();
+        dashboard.searchABrand("B&M-SankaXYZ");
+    }
+
+    @Test(priority = 4)
+    public void verifyClickGoToClientDashboardTest() {
+//        testUtil.switchToFrame();
+        clientDashboard = dashboard.clickOnGoToClientDashboard();
+    }
+
+    @Test(priority = 5)
+    public void verifySearchABrandAndGoToClientDashboard() {
+        dashboard.searchABrand("B&M-SankaXYZ2");
+        dashboard1.clickBrandSearchButton();
+        clientDashboard = dashboard.clickOnGoToSearchedClientDashboard();
     }
 
     @AfterMethod

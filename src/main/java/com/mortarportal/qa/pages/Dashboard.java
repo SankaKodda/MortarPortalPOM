@@ -14,8 +14,14 @@ public class Dashboard extends TestBase {
     @FindBy(xpath="//tr[4]/td[3]/button")
     WebElement goToClientDashboardButton;
 
+    @FindBy(xpath= "//tr[1]/td[3]/button")
+    WebElement goToSearchedClient;
+
     @FindBy(id = "search")
     WebElement placeholderSearchClient;
+
+    @FindBy(xpath="//button[contains(text(),'Search')]")
+    WebElement brandSearchButton;
 
     //Initializing the Page Objects;
     public Dashboard(){
@@ -29,9 +35,21 @@ public class Dashboard extends TestBase {
         return dashboardLabel.isDisplayed();
     }
 
-    public ClientDashboardPage clickOnGoToClientDashboard(){
-        goToClientDashboardButton.click();
-        return new ClientDashboardPage();
+    public void searchABrand(String brandName){
+         placeholderSearchClient.sendKeys(brandName);
+    }
+    public void clickBrandSearchButton(){
+        brandSearchButton.click();
     }
 
+
+    public ClientDashboard clickOnGoToClientDashboard(){
+        goToClientDashboardButton.click();
+        return new ClientDashboard();
+    }
+
+    public ClientDashboard clickOnGoToSearchedClientDashboard(){
+        goToSearchedClient.click();
+        return new ClientDashboard();
+    }
 }
