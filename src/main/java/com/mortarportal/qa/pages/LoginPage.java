@@ -13,7 +13,8 @@ public class LoginPage extends TestBase {
     @FindBy(id = "password")
     WebElement password;
 
-    @FindBy(xpath = "//button[@type='submit']")
+//    @FindBy(xpath = "//button[@type='submit']")
+    @FindBy(id = "kc-login")
     WebElement loginBtn;
 
     @FindBy(xpath = "//h3[contains(text(),'Sign In')]")
@@ -21,7 +22,8 @@ public class LoginPage extends TestBase {
 
     @FindBy(xpath = "//img[contains(@class,'ui header ellipsis')]")
     WebElement mortarLogo;
-
+    @FindBy(id = "input-error")
+    WebElement spanErrorMessage;
     //Initializing Page Objects
     public LoginPage() {
         PageFactory.initElements(driver, this);
@@ -34,10 +36,22 @@ public class LoginPage extends TestBase {
     public boolean validateLoginPageImage(){
         return mortarLogo.isDisplayed();
     }
-    public Dashboard login(String uname, String pwd){
+    public DashboardPage login(String uname, String pwd){
         username.sendKeys(uname);
         password.sendKeys(pwd);
         loginBtn.click();
-        return new Dashboard();
+        return new DashboardPage();
     }
+    public BusinessOverview loginAsUser(String uname, String pwd){
+        username.sendKeys(uname);
+        password.sendKeys(pwd);
+        loginBtn.click();
+        return new BusinessOverview();
+    }
+    public boolean getErrorMessage()
+    {
+        return spanErrorMessage.isDisplayed();
+    }
+
+
 }

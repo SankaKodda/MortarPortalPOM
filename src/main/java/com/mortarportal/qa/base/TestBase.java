@@ -1,9 +1,17 @@
 package com.mortarportal.qa.base;
 
+
+
 import com.mortarportal.qa.util.TestUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,7 +23,7 @@ public class TestBase {
     //Web driver Static
     public static WebDriver driver;
     public static Properties prop;
-
+    private static final Logger logger = LoggerFactory.getLogger(TestBase.class);
     public TestBase() {
         try {
             prop = new Properties();
@@ -30,12 +38,19 @@ public class TestBase {
     }
 
     public static void initialization() {
-        String browserName = prop.getProperty("browser");
-        if (browserName.equals("chrome")) {
+
+        String browser = prop.getProperty("browser");
+
+        if (browser.equalsIgnoreCase("chrome")) {
             /*System.setProperty("webdriver.chrome.driver", "H:\\Firehouse\\Mortar\\MortarNew\\MortarPOM\\WebDriver\\chromedriver_win113\\chromedriver.exe");
             driver = new ChromeDriver();*/
             WebDriverManager.chromedriver().setup();
+
             driver = new ChromeDriver();
+        } else if (browser.equalsIgnoreCase("chrome-headless")) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("headless");
+            driver = new ChromeDriver(options);
         }
         // Maximise the Browser
         driver.manage().window().maximize();
@@ -45,4 +60,11 @@ public class TestBase {
 
         driver.get(prop.getProperty("url"));
     }
+
+  /*  @AfterMethod
+    public void afterMethod()
+    {
+        logger.info("In AfterMethod");
+        driver.close();
+    }*/
 }

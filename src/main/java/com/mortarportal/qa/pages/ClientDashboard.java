@@ -1,3 +1,4 @@
+/*
 package com.mortarportal.qa.pages;
 
 import com.mortarportal.qa.base.TestBase;
@@ -8,8 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ClientDashboard extends TestBase {
 
-    @FindBy(xpath = "xpath=//h1[contains(text(),'Business Overview')]")
-    WebElement verifyClientDashboardText;
+    @FindBy(xpath = "//h1[contains(text(),'Business Overview')]")
+    WebElement ClientDashboardText;
     @FindBy(xpath = "xpath=//li[contains(text(),'B&M-SankaXYZ')]")
     WebElement businessOwnerID;
 
@@ -45,12 +46,18 @@ public class ClientDashboard extends TestBase {
     @FindBy(xpath = "//span[contains(text(),'My Creatives')]")
     WebElement navMyCreativesLink;
 
+    @FindBy(xpath = "//li[contains(text(),'B&M-SankaXYZ')]")
+    WebElement brandNameText;
     //Initializing the Page Objects;
     public ClientDashboard(){
         PageFactory.initElements(driver, this);
     }
     public boolean verifyClientDashboardText(){
-        return verifyClientDashboardText.isDisplayed();
+        return ClientDashboardText.isDisplayed();
+    }
+    public boolean verifyClientName(String brandNameVerify){
+         WebElement verifyName = driver.findElement(By.xpath("//li[contains(text(),'"+brandNameVerify+"')]"));
+        return verifyName.isDisplayed();
     }
     public boolean verifyBusinessOwnerID(String businessOwnerId){
         return driver.findElement(By.xpath("//li[contains(" +
@@ -90,3 +97,4 @@ public class ClientDashboard extends TestBase {
     }
 
 }
+*/

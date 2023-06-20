@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="MortarAI Portal Test Automation Test Suite" >
-    <test name="testMortarQA">
+    <!--<test name="testMortarQA-chrome">
+        <parameter name="browserName" value="chrome"/>
+        <classes>
+            <class name="com.mortarportal.qa.testcases.LoginPageTest"></class>
+            <class name="com.mortarportal.qa.testcases.DashboardPageTest"></class>
+            <class name="com.mortarportal.qa.testcases.ClientDashboardTest"></class>
+        </classes>
+    </test>-->
+    <test name="testMortarQA-chrome-headless">
+        <parameter name="browser" value="chrome-headless"/>
         <classes>
             <class name="com.mortarportal.qa.testcases.LoginPageTest"></class>
             <class name="com.mortarportal.qa.testcases.DashboardPageTest"></class>

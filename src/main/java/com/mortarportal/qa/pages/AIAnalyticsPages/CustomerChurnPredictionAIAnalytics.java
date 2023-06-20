@@ -1,19 +1,20 @@
-package com.mortarportal.qa.pages;
+package com.mortarportal.qa.pages.AIAnalyticsPages;
 
 import com.mortarportal.qa.base.TestBase;
-import com.mortarportal.qa.pages.AIAnalyticsPages.*;
+import com.mortarportal.qa.pages.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
-public class AIAnalytics extends TestBase {
-
+public class CustomerChurnPredictionAIAnalytics extends TestBase {
     @FindBy(xpath = "xpath=//h1[contains(text(),'Analytics')]")
     WebElement analyticsLabel;
     @FindBy(xpath = "xpath=//li[contains(text(),'B&M-SankaXYZ')]")
     WebElement businessOwnerID;
     //Nav BAr
-//Business Overview Button
+    //Business Overview Button
     @FindBy(xpath = "//span[contains(text(),'Business Overview')]")
     WebElement navBusinessOverviewLink;
 
@@ -60,11 +61,15 @@ public class AIAnalytics extends TestBase {
     @FindBy(id = "ngb-nav-6")
     WebElement targetAudienceLink;
 
+    @FindBy(xpath = "//div[2]/div/div/div/div/h5[contains(text(),'Customers at risk of churn')]")
+            //[contains(text(),'Customers at risk of churn')]
+    WebElement customersAtChurnList;
+    @FindBy(id = "dropdownBasic1")
+    WebElement minimumPurchaseCountDropdown;
 
-    public AIAnalytics() {
+    public CustomerChurnPredictionAIAnalytics(){
         PageFactory.initElements(driver, this);
     }
-
     public String verifyAIAnalyticsPageTitle() {
         return driver.getTitle();
     }
@@ -117,39 +122,13 @@ public class AIAnalytics extends TestBase {
         return new MyCreatives();
     }
 
-    public CustomerChurnPredictionAIAnalytics clickOnGoToCustomerChurnPredictionAIAnalytics() {
-        customerChurnPredictionLink.click();
-        return new CustomerChurnPredictionAIAnalytics();
+    public boolean verifyCustomersAtChurnListDisplay(){
+        return customersAtChurnList.isDisplayed();
+    }
+    public void changeMinimumPurchaseCount(String minimumPurchaseCountValue){
+        Select minimumPurchaseCount = new Select(driver.findElement(By.id("dropdownBasic1")));
+        minimumPurchaseCount.selectByValue(minimumPurchaseCountValue);
     }
 
-    public SalesAIAnalytics clickOnGoToSalesAIAnalytics() {
-        salesLink.click();
-        return new SalesAIAnalytics();
-    }
-
-    public SegmentsAIAnalytics clickOnGoToSegmentsAIAnalytics() {
-        segmentLink.click();
-        return new SegmentsAIAnalytics();
-    }
-
-    public ProductsAIAnalytics clickOnGoToProductsAIAnalytics() {
-        productsLink.click();
-        return new ProductsAIAnalytics();
-    }
-
-    public TrendsAIAnalytics clickOnGoToTrendsAIAnalytics() {
-        trendsLink.click();
-        return new TrendsAIAnalytics();
-    }
-
-    public DemographicAIAnalytics clickOnGoToDemographicAIAnalytics() {
-        demographicLink.click();
-        return new DemographicAIAnalytics();
-    }
-
-    public TargetAudienceAIAnalytics clickOnGoToTargetAudienceAIAnalytics() {
-        demographicLink.click();
-        return new TargetAudienceAIAnalytics();
-    }
 
 }
